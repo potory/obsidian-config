@@ -1,18 +1,12 @@
 import { encrypt } from "npm:octagonal-wheels@0.1.16/encryption/encryption.js";
 
-const noun = ["waterfall", "river", "breeze", "moon", "rain", "wind", "sea", "morning", "snow", "lake", "sunset", "pine", "shadow", "leaf", "dawn", "glitter", "forest", "hill", "cloud", "meadow", "sun", "glade", "bird", "brook", "butterfly", "bush", "dew", "dust", "field", "fire", "flower", "firefly", "feather", "grass", "haze", "mountain", "night", "pond", "darkness", "snowflake", "silence", "sound", "sky", "shape", "surf", "thunder", "violet", "water", "wildflower", "wave", "water", "resonance", "sun", "log", "dream", "cherry", "tree", "fog", "frost", "voice", "paper", "frog", "smoke", "star"];
-const adjectives = ["autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green", "long", "late", "lingering", "bold", "little", "morning", "muddy", "old", "red", "rough", "still", "small", "sparkling", "thrumming", "shy", "wandering", "withered", "wild", "black", "young", "holy", "solitary", "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine", "polished", "ancient", "purple", "lively", "nameless"];
-function friendlyString() {
-    return `${adjectives[Math.floor(Math.random() * adjectives.length)]}-${noun[Math.floor(Math.random() * noun.length)]}`;
-}
-
-const uri_passphrase = `${Deno.env.get("PASSPHRASE") ?? friendlyString()}`;
+const uri_passphrase = `${Deno.env.get("PASSPHRASE")}`;
 
 
 const URIBASE = "obsidian://setuplivesync?settings=";
 async function main() {
     const conf = {
-        "couchDB_URI": `${Deno.env.get("HOSTNAME")}`,
+        "couchDB_URI": `${Deno.env.get("EXTERNAL_DB")}`,
         "couchDB_USER": `${Deno.env.get("USERNAME")}`,
         "couchDB_PASSWORD": `${Deno.env.get("PASSWORD")}`,
         "couchDB_DBNAME": `${Deno.env.get("DATABASE")}`,
