@@ -6,22 +6,22 @@ function friendlyString() {
     return `${adjectives[Math.floor(Math.random() * adjectives.length)]}-${noun[Math.floor(Math.random() * noun.length)]}`;
 }
 
-const uri_passphrase = `${Deno.env.get("uri_passphrase") ?? friendlyString()}`;
+const uri_passphrase = `${Deno.env.get("PASSPHRASE") ?? friendlyString()}`;
 
 
 const URIBASE = "obsidian://setuplivesync?settings=";
 async function main() {
     const conf = {
-        "couchDB_URI": `${Deno.env.get("hostname")}`,
-        "couchDB_USER": `${Deno.env.get("username")}`,
-        "couchDB_PASSWORD": `${Deno.env.get("password")}`,
-        "couchDB_DBNAME": `${Deno.env.get("database")}`,
+        "couchDB_URI": `${Deno.env.get("HOSTNAME")}`,
+        "couchDB_USER": `${Deno.env.get("USERNAME")}`,
+        "couchDB_PASSWORD": `${Deno.env.get("PASSWORD")}`,
+        "couchDB_DBNAME": `${Deno.env.get("DATABASE")}`,
         "syncOnStart": true,
         "gcDelay": 0,
         "periodicReplication": true,
         "syncOnFileOpen": true,
         "encrypt": true,
-        "passphrase": `${Deno.env.get("passphrase")}`,
+        "passphrase": `${Deno.env.get("PASSPHRASE")}`,
         "usePathObfuscation": true,
         "batchSave": true,
         "batch_size": 50,
