@@ -15,6 +15,10 @@ fi
 
 echo "-- Configuring CouchDB by REST APIs... -->"
 
+echo "HOSTNAME: ${HOSTNAME}"
+echo "USERNAME: ${USERNAME}"
+echo "PASSWORD: ${PASSWORD}"
+
 until (curl -X POST "${HOSTNAME}/_cluster_setup" -H "Content-Type: application/json" -d "{\"action\":\"enable_single_node\",\"username\":\"${username}\",\"password\":\"${password}\",\"bind_address\":\"0.0.0.0\",\"port\":5984,\"singlenode\":true}" --user "${username}:${password}"); do sleep 5; done
 until (curl -X PUT "${HOSTNAME}/_node/nonode@nohost/_config/chttpd/require_valid_user" -H "Content-Type: application/json" -d '"true"' --user "${username}:${password}"); do sleep 5; done
 until (curl -X PUT "${HOSTNAME}/_node/nonode@nohost/_config/chttpd_auth/require_valid_user" -H "Content-Type: application/json" -d '"true"' --user "${username}:${password}"); do sleep 5; done
